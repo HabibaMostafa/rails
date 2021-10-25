@@ -1,2 +1,10 @@
 
 <h1><%= 'Game Page' %></h1>
+
+<%= form_tag "test", method: "post" do %>
+
+<br/>
+
+<%= link_to "End Game", home_index_path, type: "button", action: "", class: "btn btn-secondary" %>
+
+<% end %>

@@ -1,4 +1,4 @@
-# require '../../A1/A1_Classes.rb'
+require_relative './A1/A1_Classes.rb'
 
 class HomeController < ApplicationController
   def index

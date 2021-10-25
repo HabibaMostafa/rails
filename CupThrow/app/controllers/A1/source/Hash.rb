@@ -1,3 +1,4 @@
+#!/usr/bin/ruby
 #######################
 # Adds the all_match meethod to the Hash class
 #    - supports the description facility used by both Bag and Throw
