@@ -4,16 +4,26 @@
 
 <% if user_signed_in? %>
     <%= form_tag "display_user_info", method: "post" do %>
+   
+    <br/>
 
-    <p><%= 'Gems: ' + current_user.gems.to_s %></p>
-
-    <p><%= 'Points: ' + current_user.points.to_s %></p>
+    <div class="gems-div">
+        <%= image_tag("ruby_gem_icon.png", size: "30x18", alt: "Ruby Gem", style: 'display:inline') %>
+        <%= 'Gems: ' + current_user.gems.to_s %>
+    </div>
+    
+    <br/>
+ 
+     <div class="points-div">
+        <%= image_tag("point.png", size: "24x24", alt: "Point", style: 'display:inline') %>
+        <%= 'Points: ' + current_user.points.to_s %>
+    </div>
 
     <p><%= 'Your bag contains: ' %></p>
 
-    <%= link_to "Play a Game", type: "button", action: "", class: "btn btn-dark" %>
+    <%= link_to "Play a Game", home_game_path, type: "button", action: "", class: "btn btn-dark" %>
 
-    <%= button_tag("Purchase Items", type: "button") %>
+    <%= link_to "Purchase Items", home_items_path, type: "button", action: "", class: "btn btn-dark" %>
 
     <% end %>
 <% end %>
