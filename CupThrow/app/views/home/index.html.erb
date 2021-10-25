@@ -1,0 +1,3 @@
+<% welcome_msg = current_user.present? ? 'Welcome ' + current_user.name : 'Welcome to CupThrow Game' %>
+
+<h1><%= welcome_msg %></h1>
