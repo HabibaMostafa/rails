@@ -1,3 +1,19 @@
-<% welcome_msg = current_user.present? ? 'Welcome ' + current_user.name : 'Welcome to CupThrow Game' %>
+<% welcome_msg = current_user.present? ? 'Hi, ' + current_user.name : 'Welcome to CupThrow Game' %>
 
 <h1><%= welcome_msg %></h1>
+
+<% if user_signed_in? %>
+    <%= form_tag "display_user_info", method: "post" do %>
+
+    <p><%= 'Gems: ' + current_user.gems.to_s %></p>
+
+    <p><%= 'Points: ' + current_user.points.to_s %></p>
+
+    <p><%= 'Your bag contains: ' %></p>
+
+    <%= link_to "Play a Game", type: "button", action: "", class: "btn btn-dark" %>
+
+    <%= button_tag("Purchase Items", type: "button") %>
+
+    <% end %>
+<% end %>
