@@ -1,10 +1,13 @@
-<h1><%= 'Items Page' %></h1>
+<div class="container-fluid" style="margin-left:100px;">
 
+    <h1><%= 'Items Page' %></h1>
 
-<%= form_tag "test", method: "post" do %>
+    <%= form_tag "test", method: "post" do %>
 
-<br/>
+    <br/>
 
-<%= link_to "Exit", home_index_path, type: "button", action: "", class: "btn btn-secondary" %>
+    <%= link_to "Back to Profile", home_index_path, type: "button", action: "", class: "btn btn-secondary" %>
 
-<% end %>
+    <% end %>
+
+</div>

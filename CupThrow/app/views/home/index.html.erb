@@ -1,25 +1,22 @@
+<div class="container-fluid" style="margin-left:100px;">
+
 <% welcome_msg = current_user.present? ? 'Hi, ' + current_user.name : 'Welcome to CupThrow Game' %>
 
 <h1><%= welcome_msg %></h1>
 
 <% if user_signed_in? %>
-    <%= form_tag "display_user_info", method: "post" do %>
+    <%= form_tag "init_player", method: "post" do %>
    
     <br/>
 
-    <div class="gems-div">
-        <%= image_tag("ruby_gem_icon.png", size: "30x18", alt: "Ruby Gem", style: 'display:inline') %>
-        <%= 'Gems: ' + current_user.gems.to_s %>
-    </div>
-    
-    <br/>
- 
-     <div class="points-div">
-        <%= image_tag("point.png", size: "24x24", alt: "Point", style: 'display:inline') %>
-        <%= 'Points: ' + current_user.points.to_s %>
-    </div>
+    <p>
+        <%= 'Your ' %>
+        <%= image_tag("bag.png", size: "40x40", alt: "Bag", style: 'display:inline') %>
+        <%= ' contains: ' %>
+    </p>
 
-    <p><%= 'Your bag contains: ' %></p>
+    <br/>
+    <br/>
 
     <%= link_to "Play a Game", home_game_path, type: "button", action: "", class: "btn btn-dark" %>
 
@@ -30,3 +27,4 @@
 <% else %>
     <%= image_tag("cupthrow.jpg", size: "1000x700", alt: "Edit Entry") %>
 <% end %>
+</div>
