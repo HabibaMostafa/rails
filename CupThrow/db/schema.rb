@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(version: 2021_10_25_003214) do
     t.integer "user_score"
     t.integer "points"
     t.integer "gems"
+    t.string "bag"
+    t.string "coin_denomination"
+    t.integer "throw_result"
   end
 
 end
+
+

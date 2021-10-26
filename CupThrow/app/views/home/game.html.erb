@@ -1,13 +1,41 @@
 <div class="container-fluid" style="margin-left:100px;">
 
-    <h1><%= 'Game Page' %></h1>
+    <h1><%= 'Make a Throw' %></h1>
 
-    <%= form_tag "test", method: "post" do %>
+    <%= form_tag('throw', method: 'post') do %>
 
-    <br/>
+        <label>Coin Denomination</label>
+         <%= text_field_tag '@coin_denomination', nil, placeholder: '0.25' %>
+        <br/><br/>
+
+        <label>Number of Coins</label>
+         <%= text_field_tag '@coin_count', nil, placeholder: '1' %>
+        <br/><br/>
+
+        <label>Dice Colour</label>
+         <%= text_field_tag '@dice_colour', nil, placeholder: ':white' %>
+        <br/><br/>
+
+        <label>Dice Sides</label>
+         <%= text_field_tag '@dice_sides', nil, placeholder: '6' %>
+        <br/><br/>
+
+        <label>Number of Dice</label>
+         <%= text_field_tag '@dice_count', nil, placeholder: '1' %>
+        <br/><br/>
+       
+        <%= link_to "Throw", home_index_path, type: "button", action: "throw_cup", class: "btn btn-dark" %>
+
+        <br/><br/>
+    
+        <%= 'Your throw result is:' %>
+        <%= rand(10...30) %>
+
+        <br/><br/>
 
     <%= link_to "End Game", home_index_path, type: "button", action: "", class: "btn btn-secondary" %>
 
     <% end %>
+
     
 </div>

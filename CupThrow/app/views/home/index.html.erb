@@ -1,30 +1,56 @@
-<div class="container-fluid" style="margin-left:100px;">
 
 <% welcome_msg = current_user.present? ? 'Hi, ' + current_user.name : 'Welcome to CupThrow Game' %>
 
-<h1><%= welcome_msg %></h1>
+    <% if user_signed_in? %>
 
-<% if user_signed_in? %>
-    <%= form_tag "init_player", method: "post" do %>
-   
-    <br/>
+    <div class="container-fluid" style="margin-left:100px;">
+    <h1><%= welcome_msg %></h1>
 
-    <p>
-        <%= 'Your ' %>
-        <%= image_tag("bag.png", size: "40x40", alt: "Bag", style: 'display:inline') %>
-        <%= ' contains: ' %>
-    </p>
+        <%= form_tag('init_player', method: 'post') do %>
+    
+        <br/>
 
-    <br/>
-    <br/>
+        <p>
+            <%= 'Your ' %>
+            <%= image_tag("bag.png", size: "40x40", alt: "Bag", style: 'display:inline') %>
+            <%= ' contains ' %>
+            <%= @about_me %>
 
-    <%= link_to "Play a Game", home_game_path, type: "button", action: "", class: "btn btn-dark" %>
+        </p>
 
-    <%= link_to "Purchase Items", home_items_path, type: "button", action: "", class: "btn btn-dark" %>
+        <table class="table table-striped" style="max-width: 700px;">
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Count</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= 'Coin' %></td>
+                    <td><%= '3' %></td>
+                    <td><%= '0.25' %></td>
+                </tr>
+                <tr>
+                    <td><%= 'Die' %></td>
+                    <td><%= '3' %></td>
+                    <td><%= 'white, 6 sided' %></td>
+                </tr>
+            </tbody>
+        </table>
 
+        <br/>
+        <br/>
+
+        <%= link_to "Play a Game", home_game_path, type: "button", action: "", class: "btn btn-dark" %>
+
+        <%= link_to "Purchase Items", home_items_path, type: "button", action: "", class: "btn btn-dark" %>
+
+        </div>
+        <% end %>
+
+    <% else %>
+        <%= image_tag("n.png", style: 'width:100%;height:auto;', alt: "Edit Entry") %>
     <% end %>
-
-<% else %>
-    <%= image_tag("cupthrow.jpg", size: "1000x700", alt: "Edit Entry") %>
-<% end %>
-</div>
+    
