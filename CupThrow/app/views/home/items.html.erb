@@ -1,12 +1,58 @@
 <div class="container-fluid" style="margin-left:100px;">
 
-    <h1><%= 'Items Page' %></h1>
+    <h1><%= 'Purchase Items' %></h1>
 
-    <%= form_tag "test", method: "post" do %>
+    <%= form_tag "buy_coins", method: "post" do %>
 
-    <br/>
+        <p><%= '1. Make adjustments to your bag by filling out the form to purchase dice and coins.' %></p>
+        <p><%= '2. Click buy to perform your transaction, the cost is 1 gem per side. ' %></p>
+        <p><%= '3. Checkout your gems above, they\'ll be updated accordingly. ' %></p>
+
+        <br/>
+
+        <p class="nav-item" style="margin-top:8px; padding-right:20px">
+            <%= 'Buy ' %>
+            <%= image_tag("coins.png", size: "60x60", alt: "Coins", style: 'display:inline') %>
+        </p>
+
+        <label>Coin Denomination</label>
+        <%= text_field_tag "coins_denomination", nil, placeholder: '0.25' %>
+        <br/><br/>
+
+        <label>Number of Coins</label>
+        <%= text_field_tag "coins_count", nil, placeholder: '0.25' %>
+        <br/><br/>
+
+        <%= button_to "Buy Coins", type: "button", action: "buy_coins", class: "btn btn-dark" %>
+        <br/><br/>
+
+    <% end %>
+
+    <%= form_tag "buy_dice", method: "post" do %>
+
+        <p class="nav-item" style="margin-top:8px; padding-right:20px">
+            <%= 'Buy ' %>
+            <%= image_tag("dice.png", size: "70x50", alt: "Dice", style: 'display:inline') %>
+        </p>
+    
+        <label>Dice Colour</label>
+        <%= text_field_tag "dice_colour", nil, placeholder: ':white' %>
+        <br/><br/>
+
+        <label>Dice Sides</label>
+        <%= text_field_tag "dice_sides", nil, placeholder: '6' %>
+        <br/><br/>
+
+        <label>Number of Dice</label>
+        <%= text_field_tag "dice_count", nil, placeholder: '1' %>
+        <br/><br/>
+
+        <%= button_to "Buy Dice", type: "button", action: "buy_dice", class: "btn btn-dark" %>
+
+        <br/>
 
     <%= link_to "Back to Profile", home_index_path, type: "button", action: "", class: "btn btn-secondary" %>
+    <br/><br/><br/>
 
     <% end %>
 

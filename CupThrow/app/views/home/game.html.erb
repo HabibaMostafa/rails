@@ -2,40 +2,88 @@
 
     <h1><%= 'Make a Throw' %></h1>
 
-    <%= form_tag('throw', method: 'post') do %>
+    <br/>
+
+    <p class="nav-item" style="margin-top:8px; padding-right:20px">
+        <%= image_tag("avatar.png", size: "30x30", alt: "Point", style: 'display:inline') %>
+        <%= 'Player 1: ' + current_user.name %>
+    </p>
+
+    <p class="nav-item" style="margin-top:8px; padding-right:20px">
+        <%= image_tag("computer.jpeg", size: "30x30", alt: "Point", style: 'display:inline') %>
+        <%= 'Player 2: Computer' %></p>
+    </p>
+    
+        <% if current_user.bag == "currgame" %>
+            <%= 'Your throw result =' %>
+            <%= current_user.user_score = rand(10...30) %>
+            <% current_user.save %>
+            <br/><br/>
+
+            <%= 'The computer\'s throw result =' %>
+            <% computer_score = rand(10...30) %>
+            <%= computer_score %>
+            <br/><br/>
+
+            <% if computer_score > current_user.user_score %>
+                <h2 style="color: red;"><%= 'Computer wins, hard luck!' %></h2>
+            <% elsif computer_score == current_user.user_score %>
+                <h2><%= 'It\'s a tie!' %></h2>
+            <% else %>
+                <h2 style="color: blue;"><%= 'You win, congrats!' %></h2>
+                <p><%= 'Checkout your updated gems above.' %></p>
+
+                <% current_user.points += current_user.user_score %>
+                <% current_user.gems += current_user.user_score - computer_score %>
+                <% current_user.save %>
+            <% end %>
+
+            <% current_user.bag = "newgame" %>
+            <% current_user.save %>
+
+            <br/>
+            <%= button_to "Throw Again", type: "button", action: "throw_cup", class: "btn btn-dark" %>
+            <br/>
+
+        <% else %>
+            <p><%= 'Rules of the Game: ' %></p>
+            <p><%= '1. Make adjustments to your bag by filling out the form to add dice and coins.' %></p>
+            <p><%= '2. After filling the form i.e. your bag, click Throw.' %></p>
+            <p><%= '3. Next is the Computer\'s turn, it will make its own Throw.' %></p>
+            <p><%= '4. The player with the highest throw result wins the game. ' %></p>
+        <% end %>
+
+    <%= form_tag('throw_cup', method: 'post') do %>
+
+        <br/>
 
         <label>Coin Denomination</label>
-         <%= text_field_tag '@coin_denomination', nil, placeholder: '0.25' %>
+        <%= text_field_tag '@coin_denomination', nil, placeholder: '0.25' %>
         <br/><br/>
 
         <label>Number of Coins</label>
-         <%= text_field_tag '@coin_count', nil, placeholder: '1' %>
+        <%= text_field_tag '@coin_count', nil, placeholder: '1' %>
         <br/><br/>
 
         <label>Dice Colour</label>
-         <%= text_field_tag '@dice_colour', nil, placeholder: ':white' %>
+        <%= text_field_tag '@dice_colour', nil, placeholder: ':white' %>
         <br/><br/>
 
         <label>Dice Sides</label>
-         <%= text_field_tag '@dice_sides', nil, placeholder: '6' %>
+        <%= text_field_tag '@dice_sides', nil, placeholder: '6' %>
         <br/><br/>
 
         <label>Number of Dice</label>
-         <%= text_field_tag '@dice_count', nil, placeholder: '1' %>
+        <%= text_field_tag '@dice_count', nil, placeholder: '1' %>
         <br/><br/>
        
-        <%= link_to "Throw", home_index_path, type: "button", action: "throw_cup", class: "btn btn-dark" %>
-
-        <br/><br/>
-    
-        <%= 'Your throw result is:' %>
-        <%= rand(10...30) %>
-
+        <%= button_to "Throw", type: "button", action: "throw_cup", class: "btn btn-dark" %>
+        
         <br/><br/>
 
-    <%= link_to "End Game", home_index_path, type: "button", action: "", class: "btn btn-secondary" %>
+    <%= link_to "End Game   ", home_index_path, type: "button", action: "", class: "btn btn-secondary" %>
+        <br/><br/><br/>
 
     <% end %>
-
     
 </div>

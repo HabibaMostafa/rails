@@ -4,17 +4,9 @@ class HomeController < ApplicationController
  
   def index
     @users = User.all
-    # @user.bag = "Dice: "
-    # @user.user_score = 5
-    # @user.name = "test"
-    # @user.user_score.saves
   end
 
   def init_player 
-    @about_me = "tests"
-    # @user = current_user
-    # # data comes through params 
-
     @player = Player.new(current_user.name)
     h1 = Hand.new
   
@@ -30,32 +22,30 @@ class HomeController < ApplicationController
     h1.store_all [c1, c2, c3, d1, d2, d3]
     p1.move_all(h1)
 
-    # current_user.bag = "test"
-    # current_user.bag.save
-    # redirect to index
-    redirect_to home_game_path #'home/game' // render 'game'
+    redirect_to home_game_path 
   end 
 
   def throw_cup
-    @player.throw()
-    # p1.load({ params here })
-    @throw = @player.throw
-    @throw.results  
-    @user.throw_result = rand(10...30)
-    @user.throw_result.save
+    current_user.bag = "currgame"
+    current_user.name
+    current_user.user_score = 16
+    current_user.save
+    render 'game' 
   end 
 
+  def buy_coins
+    # current_user.coins = 1s
+    cost = params[:coins_count].to_i * 2
+    current_user.gems = current_user.gems - cost
+    current_user.save
+    render 'items' 
+  end
+
+  def buy_dice
+    cost = params[:dice_count].to_i * params[:dice_sides].to_i
+    current_user.gems = current_user.gems - cost
+    current_user.save
+    render 'items' 
+  end
+
 end
-
-# <%= @user.throw_result %>
-
-# <% @user.items.each do |item| %>
-  # <tr>
-  #     <td><%= link_to game.id, game_path(game.id) %></td>
-  #     <td><%= item.type %></td>
-  #     <td><%= item.count %></td>
-  #     <td><%= item.description %></td>
-  # </tr>
-
-# <%= submit_tag ('Add to my Cup') %>
-# <%= link_to "Throw", :controller => :home_controller, type: "button", action: "throw_cup", class: "btn btn-dark" %>

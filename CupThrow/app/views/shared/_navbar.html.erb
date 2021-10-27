@@ -4,11 +4,11 @@
     <div class="inline" style="display:inline-block">
         <p class="nav-item" style="display:inline-block; margin-top:8px; padding-right:20px">
           <%= image_tag("ruby_gem_icon.png", size: "30x18", alt: "Ruby Gem", style: 'display:inline') %>
-          <%= current_user.gems.to_s %>
+          <%= current_user.gems %>
         </p>
         <p class="nav-item" style="display:inline-block; margin-top:8px; padding-right:20px">
           <%= image_tag("point.png", size: "24x24", alt: "Point", style: 'display:inline') %>
-          <%= current_user.points.to_s %>
+          <%= current_user.points %>
         </p>
     </div>
     <% else %>

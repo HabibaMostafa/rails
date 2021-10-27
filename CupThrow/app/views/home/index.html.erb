@@ -29,13 +29,13 @@
             <tbody>
                 <tr>
                     <td><%= 'Coin' %></td>
-                    <td><%= '3' %></td>
-                    <td><%= '0.25' %></td>
+                    <td><%= current_user.default_coin_count %></td>
+                    <td><%= current_user.default_coin_den %></td>
                 </tr>
                 <tr>
                     <td><%= 'Die' %></td>
-                    <td><%= '3' %></td>
-                    <td><%= 'white, 6 sided' %></td>
+                    <td><%= current_user.default_dice_count %></td>
+                    <td><%= current_user.default_dice_colour + ', ' + current_user.default_dice_sides + ' sided' %></td>
                 </tr>
             </tbody>
         </table>

@@ -27,8 +27,15 @@ ActiveRecord::Schema.define(version: 2021_10_25_003214) do
     t.integer "points"
     t.integer "gems"
     t.string "bag"
-    t.string "coin_denomination"
+    t.string "default_coin_den",  default: "0.25"
+    t.string "default_coin_count",  default: "3"
+    t.string "default_dice_sides",  default: "6"
+    t.string "default_dice_colour",  default: "White"
+    t.string "default_dice_count",  default: "3"
+    t.integer "coins"
+    t.integer "dice"
     t.integer "throw_result"
+    t.boolean "flag", default: true
   end
 
 end
